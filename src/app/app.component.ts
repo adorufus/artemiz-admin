@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'artemiz-admin';
+
+  sideBarOpen = true;
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  sideBarToggler() {
+    this.sideBarOpen = !this.sideBarOpen;
+  }
 }

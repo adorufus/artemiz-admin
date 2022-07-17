@@ -1,0 +1,47 @@
+<h1 mat-dialog-title>{{dialogName}} Category</h1>
+<mat-spinner
+  *ngIf="spinnerService.visibility | async; else content"
+></mat-spinner>
+<ng-template #content>
+  <h4 *ngIf="isCompleted;" style="color: rgb(36, 204, 92);">
+    Upload completed, please refresh this page to see the changes
+  </h4>
+  <mat-dialog-content>
+    <mat-form-field appearance="outline">
+      <mat-label>Category name</mat-label>
+      <input
+        matInput
+        [(ngModel)]="categoryName"
+        placeholder="Your category name"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <div>
+        <mat-toolbar>
+          <input matInput [(ngModel)]="fileAttr" readonly name="name" />
+          <button mat-flat-button color="primary">Pick Image</button>
+        </mat-toolbar>
+        <input
+          type="file"
+          #fileInput
+          id="uploadFile"
+          (change)="uploadFile($event)"
+          name="uploadFile"
+          multiple="multiple"
+          accept="image/*"
+        />
+      </div>
+    </mat-form-field>
+  </mat-dialog-content>
+  <div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="proccess()"
+      cdkFocusInitial
+    >
+      Create
+    </button>
+  </div>
+</ng-template>
