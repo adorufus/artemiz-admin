@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Delete news</h1>
+<mat-spinner
+  *ngIf="spinnerService.visibility | async; else content"
+></mat-spinner>
+<ng-template #content>
+  <h4 *ngIf="isCompleted; else notCompleted" style="color: rgb(36, 204, 92)">
+    Delete completed, please refresh this page to see the changes
+  </h4>
+  <ng-template #notCompleted>
+    <div mat-dialog-contentt>
+      Are you sure you want to delete this news?
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button mat-dialog-close>No</button>
+      <button mat-button (click)="deleteNews()" cdkFocusInitial>Yes</button>
+    </div>
+  </ng-template>
+</ng-template>

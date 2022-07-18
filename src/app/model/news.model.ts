@@ -3,6 +3,7 @@ export class News {
 }
 
 class Data {
+    _id?: string;
     image?: string;
     thumbnail?: string;
     article?: string;

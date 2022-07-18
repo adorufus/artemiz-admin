@@ -6,7 +6,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 import { CategoryService } from 'src/app/services/category.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 

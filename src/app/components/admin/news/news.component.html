@@ -12,7 +12,7 @@
       </div>
       <div class="row">
         <div class="col-auto">
-          <button mat-button class="add-news-btn d-flex align-items-center">
+          <button mat-button (click)="openEditDialog('Add')" class="add-news-btn d-flex align-items-center">
             Add News
           </button>
         </div>
@@ -43,6 +43,7 @@
               <td>
                 <button
                   mat-button
+                  (click)="openEditDialog('Edit', newsData._id, newsData.title)"
                   style="
                     border-radius: 5px;
                     background-color: rgb(32, 216, 115);
@@ -54,6 +55,7 @@
                 </button>
                 <button
                   mat-button
+                  (click)="openDeleteDialog(newsData._id!)"
                   style="
                     border-radius: 5px;
                     background-color: rgb(216, 32, 32);

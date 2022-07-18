@@ -31,6 +31,8 @@ import { HttpModule } from './modules/http/http.module';
 import { environment } from 'src/environments/environment.prod';
 import { CreateCategoryDialogComponent } from './components/admin/category/dialog/create-category-dialog/create-category-dialog.component';
 import { CustomHttpInterceptor } from './helper/http-interceptor';
+import { CreateEditDialogComponent } from './components/admin/news/dialogs/create-edit-dialog/create-edit-dialog.component';
+import { DeleteNewsDialogComponent } from './components/admin/news/dialogs/delete-news-dialog/delete-news-dialog.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { CustomHttpInterceptor } from './helper/http-interceptor';
     DashboardComponent,
     DialogCategoryDelete,
     CreateCategoryDialogComponent,
+    CreateEditDialogComponent,
+    DeleteNewsDialogComponent,
   ],
   imports: [
     BrowserModule,

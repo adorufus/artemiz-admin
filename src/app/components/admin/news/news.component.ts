@@ -1,20 +1,38 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { News } from 'src/app/model/news.model';
 import { NewsService } from 'src/app/services/news.service';
+import { CreateCategoryDialogComponent } from '../category/dialog/create-category-dialog/create-category-dialog.component';
+import { CreateEditDialogComponent } from './dialogs/create-edit-dialog/create-edit-dialog.component';
+import { DeleteNewsDialogComponent } from './dialogs/delete-news-dialog/delete-news-dialog.component';
 
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
-  styleUrls: ['./news.component.scss']
+  styleUrls: ['./news.component.scss'],
 })
 export class NewsComponent implements OnInit {
-
   news?: News;
 
-  constructor(private newsService: NewsService) { }
+  constructor(private newsService: NewsService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.fetchNews()
+    this.fetchNews();
+  }
+
+  openEditDialog(name: string, id?: string, currentTitle?: string) {
+    const dialogRef = this.dialog.open(CreateEditDialogComponent, {
+      width: '30%',
+      data: {
+        dialogNameData: name,
+        idData: id,
+        currentTitle: currentTitle,
+      },
+    });
+  }
+
+  openDeleteDialog(id: string) {
+    const dialogRef = this.dialog.open(DeleteNewsDialogComponent)
   }
 
   fetchNews() {
@@ -24,12 +42,11 @@ export class NewsComponent implements OnInit {
         console.log(this.news.data);
       },
       complete: () => {
-        console.log("news completed");
+        console.log('news completed');
       },
       error: (err) => {
         console.log(err);
-      }
-    })
+      },
+    });
   }
-
 }
