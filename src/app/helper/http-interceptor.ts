@@ -23,7 +23,7 @@ export class CustomHttpInterceptor implements HttpInterceptor {
         {
           next: (event) => {
             if (event instanceof HttpResponse) {
-              this.spinnerService.hide;
+              this.spinnerService.hide();
             }
           },
           error: (err) => {

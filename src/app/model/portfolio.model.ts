@@ -10,6 +10,10 @@ class CategoryData {
     tier_list?: Tier[]
 }
 
+export class TierData {
+    data?: Tier[]
+}
+
 export class Tier {
     _id?: string
     tier_portofolio_images?: string[]

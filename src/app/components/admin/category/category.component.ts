@@ -1,13 +1,14 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
-import { Category } from 'src/app/model/portfolio.model';
-import { CategoryService } from 'src/app/services/category.service';
+import { Component, Inject, Input, OnInit } from '@angular/core'
+import { Category } from 'src/app/model/portfolio.model'
+import { CategoryService } from 'src/app/services/category.service'
 import {
   MatDialog,
   MatDialogRef,
   MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
-import { CreateCategoryDialogComponent } from './dialog/create-category-dialog/create-category-dialog.component';
-import { SpinnerService } from 'src/app/services/spinner.service';
+} from '@angular/material/dialog'
+import { CreateCategoryDialogComponent } from './dialog/create-category-dialog/create-category-dialog.component'
+import { SpinnerService } from 'src/app/services/spinner.service'
+import { PortfolioComponent } from '../portfolio/portfolio.component'
 
 @Component({
   selector: 'app-category',
@@ -15,15 +16,15 @@ import { SpinnerService } from 'src/app/services/spinner.service';
   styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent implements OnInit {
-  category?: Category;
+  category?: Category
 
   constructor(
     private categoryService: CategoryService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
-    this.fetchCategories();
+    this.fetchCategories()
   }
 
   openDeleteDialog(id: string) {
@@ -31,7 +32,7 @@ export class CategoryComponent implements OnInit {
       data: {
         id: id,
       },
-    });
+    })
   }
 
   openEditDialog(name: string, id?: string, currentTitle?: string) {
@@ -42,35 +43,43 @@ export class CategoryComponent implements OnInit {
         idData: id,
         currentTitle: currentTitle,
       },
-    });
+    })
+  }
+
+  openDetailDialog(id: string) {
+    const dialogRef = this.dialog.open(PortfolioComponent, {
+      data: {
+        categoryId: id,
+      },
+    })
   }
 
   fetchCategories() {
     this.categoryService.getCategories().subscribe({
       next: (data) => {
-        this.category = data;
+        this.category = data
       },
       complete: () => {
-        console.log('categories fetched');
+        console.log('categories fetched')
       },
       error: (err) => {
-        console.log(err);
+        console.log(err)
       },
-    });
+    })
   }
 
   addCategory(categoryName: string, image_file: File) {
     this.categoryService.addCategory(categoryName, image_file).subscribe({
       next: (data) => {
-        console.log(data);
+        console.log(data)
       },
       complete: () => {
-        console.log('category created!');
+        console.log('category created!')
       },
       error: (err) => {
-        console.log(err);
+        console.log(err)
       },
-    });
+    })
   }
 }
 
@@ -79,36 +88,36 @@ export class CategoryComponent implements OnInit {
   templateUrl: 'delete-category-dialog.html',
 })
 export class DialogCategoryDelete {
-  isCompleted = false;
+  isCompleted = false
   constructor(
     public dialogRef: MatDialogRef<DialogCategoryDelete>,
     @Inject(MAT_DIALOG_DATA) public data: { id: string },
     private categoryService: CategoryService,
-    public spinnerService: SpinnerService
+    public spinnerService: SpinnerService,
   ) {}
 
   ngOnInit(): void {
-    this.spinnerService.hide();
+    this.spinnerService.hide()
   }
 
   deleteCategory() {
-    console.log(this.data.id);
-    this.spinnerService.show();
+    console.log(this.data.id)
+    this.spinnerService.show()
     this.categoryService.deleteCategory(this.data.id!).subscribe({
       next: (data) => {
-        console.log(data);
-        this.spinnerService.hide();
-        this.isCompleted = true;
+        console.log(data)
+        this.spinnerService.hide()
+        this.isCompleted = true
       },
       complete: () => {
-        console.log('delete completed');
-        this.spinnerService.hide();
-        this.isCompleted = true;
+        console.log('delete completed')
+        this.spinnerService.hide()
+        this.isCompleted = true
       },
       error: (err) => {
-        console.log(err);
-        this.spinnerService.hide();
+        console.log(err)
+        this.spinnerService.hide()
       },
-    });
+    })
   }
 }

@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>Tier List</h1>
+<mat-spinner *ngIf="spinnerService.visibility | async; else content"></mat-spinner>
+<ng-template #content>
+    <h4 *ngIf="isCompleted;" style="color: rgb(36, 204, 92);">
+        Upload completed, please refresh this page to see the changes
+    </h4>
+    <mat-dialog-content>
+        <div style="margin-top: 10px;"></div>
+        <mat-form-field appearance="outline">
+            <mat-label>Tier Name</mat-label>
+            <input matInput [(ngModel)]="tierName" placeholder="Tier 1" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Tier Description</mat-label>
+            <input matInput [(ngModel)]="tierDescription" placeholder="This tier is this and that" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Youtube URL</mat-label>
+            <input matInput [(ngModel)]="youtubeUrl" placeholder="Tier 1" />
+        </mat-form-field>
+        <mat-label>Your Portfolio Images (Max 6)</mat-label>
+        <div>
+            <img width="200px" style="margin-right: 10px;" *ngFor="let url of urls" [src]="url" />
+        </div>
+        <div style="margin-top: 10px;"></div>
+        <div *ngIf="urls.length < 6">
+            <input type="file" (change)="uploadFile($event)" name="uploadFile" placeholder="test" multiple="multiple"
+                accept="image/*" />
+        </div>
+
+    </mat-dialog-content>
+    <div mat-dialog-actions [align]="'end'">
+        <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+        <button mat-raised-button color="primary" (click)="createTier()">Create</button>
+    </div>
+</ng-template>

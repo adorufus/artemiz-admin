@@ -4,7 +4,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ENV_CONFIG, EnvironmentConfig } from '../interface/env-config';
 import { News } from '../model/news.model';
-import { Category, Tier } from '../model/portfolio.model';
+import { Category, Tier, TierData } from '../model/portfolio.model';
 
 @Injectable({
   providedIn: 'root',
@@ -79,11 +79,13 @@ export class CategoryService {
     );
   }
 
-  getTierByCategory(categoryId: string): Observable<Tier> {
-    return this.http.get<Tier>(this.apiUrl! + `portfolio/tier/all-by-portfolio?portfolioId=${categoryId}`)
+  getTierByCategory(categoryId: string): Observable<TierData> {
+    return this.http.get<TierData>(this.apiUrl! + `portfolio/tier/all-by-portfolio?portfolioId=${categoryId}`)
   }
 
   createTier(tier_name: string, categoryId: string, tier_images: File[], tier_description: string, youtube_url: string): Observable<Tier> {
+
+    console.log(tier_images);
 
     const formData: FormData = new FormData();
 
@@ -92,8 +94,9 @@ export class CategoryService {
     formData.append("youtube_url", youtube_url);
     formData.append("tier_description", tier_description);
     
-    for(let image in tier_images) {
-      formData.append("images[]", image)
+    for(let i = 0; i < tier_images.length; i++) {
+      console.log(tier_images[i]);
+      formData.append(`images`, tier_images[i])
     }
 
     return this.http.post<Tier>(this.apiUrl! + "portfolio/tier/create", formData, {
