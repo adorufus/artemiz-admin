@@ -5,6 +5,7 @@ import { Tier, TierData } from 'src/app/model/portfolio.model'
 import { CategoryService } from 'src/app/services/category.service'
 import { SpinnerService } from 'src/app/services/spinner.service'
 import { CreateTierComponent } from './create-tier/create-tier/create-tier.component'
+import { DeleteTierComponent } from './delete-tier/delete-tier/delete-tier.component'
 
 @Component({
   selector: 'app-portfolio',
@@ -36,6 +37,14 @@ export class PortfolioComponent implements OnInit {
       data: {
         categoryId: this.data.categoryId,
       },
+    })
+  }
+
+  openDeleteTier(id: string) {
+    this.dialog.open(DeleteTierComponent, {
+      data: {
+        id: id
+      }
     })
   }
 

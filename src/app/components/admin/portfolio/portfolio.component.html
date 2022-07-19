@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-auto">
                 <button mat-button (click)="openAddTier()" class="add-news-btn d-flex align-items-center">
-                    Add Category
+                    Add Tier
                 </button>
             </div>
         </div>
@@ -38,7 +38,7 @@
                                 <td>{{tierData.youtube_url}}</td>
                                 <td>
 
-                                    <button mat-button style="
+                                    <button mat-button (click)="openDeleteTier(tierData._id!)" style="
                       border-radius: 5px;
                       background-color: rgb(216, 32, 32);
                       color: white;

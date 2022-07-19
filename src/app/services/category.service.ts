@@ -108,7 +108,7 @@ export class CategoryService {
   }
 
   deleteTier(id: string): Observable<Tier> {
-    return this.http.delete(this.apiUrl! + `portfolio/delete?id=${id}`, {
+    return this.http.delete(this.apiUrl! + `portfolio/tier/delete?id=${id}`, {
       headers: {
         "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjM3NjI5NDg4NmY0ZWUyYzIxNWQ4ZTEiLCJyb2xlIjoibWFzdGVyIiwiaWF0IjoxNjQ3Nzk2OTkxLCJleHAiOjE4Mjc3OTY5OTF9.2yWadBf02Vn1Oc598tWZKjXDrrpgrkFqdwNCpBiD7FE"
       }

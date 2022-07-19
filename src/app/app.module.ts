@@ -34,6 +34,9 @@ import { CustomHttpInterceptor } from './helper/http-interceptor';
 import { CreateEditDialogComponent } from './components/admin/news/dialogs/create-edit-dialog/create-edit-dialog.component';
 import { DeleteNewsDialogComponent } from './components/admin/news/dialogs/delete-news-dialog/delete-news-dialog.component';
 import { CreateTierComponent } from './components/admin/portfolio/create-tier/create-tier/create-tier.component';
+import { DeleteTierComponent } from './components/admin/portfolio/delete-tier/delete-tier/delete-tier.component';
+import { CreateBannerDialogComponent } from './components/admin/banner/create-banner-dialog/create-banner-dialog.component';
+import { DeleteBannerDialogComponent } from './components/admin/banner/delete-banner-dialog/delete-banner-dialog.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,9 @@ import { CreateTierComponent } from './components/admin/portfolio/create-tier/cr
     CreateEditDialogComponent,
     DeleteNewsDialogComponent,
     CreateTierComponent,
+    DeleteTierComponent,
+    CreateBannerDialogComponent,
+    DeleteBannerDialogComponent,
   ],
   imports: [
     BrowserModule,
