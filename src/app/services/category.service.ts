@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
+import { toBase64String } from '@angular/compiler/src/output/source_map';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ENV_CONFIG, EnvironmentConfig } from '../interface/env-config';
 import { News } from '../model/news.model';
-import { Category } from '../model/portfolio.model';
+import { Category, Tier } from '../model/portfolio.model';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,10 @@ export class CategoryService {
 
   getCategories(): Observable<Category> {
     return this.http.get<Category>(this.apiUrl! + 'portfolio/category/all');
+  }
+
+  getCategory(categoryId: string): Observable<Category> {
+    return this.http.get<Category>(this.apiUrl! + `portfolio/category?id=${categoryId}`)
   }
 
   addCategory(categoryName: string, imageUri: File): Observable<Category> {
@@ -72,5 +77,38 @@ export class CategoryService {
         },
       }
     );
+  }
+
+  getTierByCategory(categoryId: string): Observable<Tier> {
+    return this.http.get<Tier>(this.apiUrl! + `portfolio/tier/all-by-portfolio?portfolioId=${categoryId}`)
+  }
+
+  createTier(tier_name: string, categoryId: string, tier_images: File[], tier_description: string, youtube_url: string): Observable<Tier> {
+
+    const formData: FormData = new FormData();
+
+    formData.append("tier_name", tier_name);
+    formData.append("categoryId", categoryId);
+    formData.append("youtube_url", youtube_url);
+    formData.append("tier_description", tier_description);
+    
+    for(let image in tier_images) {
+      formData.append("images[]", image)
+    }
+
+    return this.http.post<Tier>(this.apiUrl! + "portfolio/tier/create", formData, {
+      headers: {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjM3NjI5NDg4NmY0ZWUyYzIxNWQ4ZTEiLCJyb2xlIjoibWFzdGVyIiwiaWF0IjoxNjQ3Nzk2OTkxLCJleHAiOjE4Mjc3OTY5OTF9.2yWadBf02Vn1Oc598tWZKjXDrrpgrkFqdwNCpBiD7FE"
+      }
+    })
+
+  }
+
+  deleteTier(id: string): Observable<Tier> {
+    return this.http.delete(this.apiUrl! + `portfolio/delete?id=${id}`, {
+      headers: {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjM3NjI5NDg4NmY0ZWUyYzIxNWQ4ZTEiLCJyb2xlIjoibWFzdGVyIiwiaWF0IjoxNjQ3Nzk2OTkxLCJleHAiOjE4Mjc3OTY5OTF9.2yWadBf02Vn1Oc598tWZKjXDrrpgrkFqdwNCpBiD7FE"
+      }
+    })
   }
 }

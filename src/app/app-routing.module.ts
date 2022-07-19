@@ -29,7 +29,7 @@ const routes: Routes = [
     component: CategoryComponent
   },
   {
-    path: 'portfolio',
+    path: 'portfolio/:id',
     component: PortfolioComponent
   },
 ];
