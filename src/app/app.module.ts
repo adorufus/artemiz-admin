@@ -28,7 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DialogCategoryDelete } from './components/admin/category/category.component';
 import { HttpModule } from './modules/http/http.module';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 import { CreateCategoryDialogComponent } from './components/admin/category/dialog/create-category-dialog/create-category-dialog.component';
 import { CustomHttpInterceptor } from './helper/http-interceptor';
 import { CreateEditDialogComponent } from './components/admin/news/dialogs/create-edit-dialog/create-edit-dialog.component';
