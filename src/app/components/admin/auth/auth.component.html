@@ -1,0 +1,33 @@
+<div class="container-center">
+  <mat-card class="center">
+    <mat-spinner *ngIf="spinnerService.visibility | async; else loginForm">
+    </mat-spinner>
+
+    <ng-template #loginForm>
+      <form class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            placeholder="Enter your username"
+            name="username"
+            [(ngModel)]="username"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            placeholder="Enter your password"
+            name="password"
+            type="password"
+            [(ngModel)]="password"
+          />
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="submit()">
+          Login
+        </button>
+      </form>
+    </ng-template>
+  </mat-card>
+</div>

@@ -1,36 +1,47 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthComponent } from './components/admin/auth/auth.component';
 import { BannerComponent } from './components/admin/banner/banner.component';
 import { CategoryComponent } from './components/admin/category/category.component';
 import { NewsComponent } from './components/admin/news/news.component';
 import { PortfolioComponent } from './components/admin/portfolio/portfolio.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
     path:"home",
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "login",
+    component: AuthComponent
   },
   {
     path: "",
     redirectTo: "/home",
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'news',
-    component: NewsComponent
+    component: NewsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'banner',
-    component: BannerComponent
+    component: BannerComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'category',
-    component: CategoryComponent
+    component: CategoryComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'portfolio/:id',
-    component: PortfolioComponent
+    component: PortfolioComponent,
+    canActivate: [AuthGuard]
   },
 ];
 

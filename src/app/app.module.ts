@@ -37,6 +37,8 @@ import { CreateTierComponent } from './components/admin/portfolio/create-tier/cr
 import { DeleteTierComponent } from './components/admin/portfolio/delete-tier/delete-tier/delete-tier.component';
 import { CreateBannerDialogComponent } from './components/admin/banner/create-banner-dialog/create-banner-dialog.component';
 import { DeleteBannerDialogComponent } from './components/admin/banner/delete-banner-dialog/delete-banner-dialog.component';
+import { AuthComponent } from './components/admin/auth/auth.component';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,7 @@ import { DeleteBannerDialogComponent } from './components/admin/banner/delete-ba
     DeleteTierComponent,
     CreateBannerDialogComponent,
     DeleteBannerDialogComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,7 +88,8 @@ import { DeleteBannerDialogComponent } from './components/admin/banner/delete-ba
       provide: HTTP_INTERCEPTORS,
       useClass: CustomHttpInterceptor,
       multi: true
-    }
+    },
+    AuthGuard
   ],
   bootstrap: [AppComponent],
 })

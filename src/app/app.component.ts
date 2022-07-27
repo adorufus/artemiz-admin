@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +13,7 @@ export class AppComponent {
 
   sideBarOpen = true;
 
-  constructor() { }
+  constructor(public authGuard: AuthGuard, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
