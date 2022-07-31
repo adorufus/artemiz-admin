@@ -22,7 +22,6 @@ export class NewsComponent implements OnInit {
 
   openEditDialog(name: string, id?: string, currentTitle?: string, currentArticle?: string) {
     const dialogRef = this.dialog.open(CreateEditDialogComponent, {
-      width: '30%',
       data: {
         dialogNameData: name,
         idData: id,

@@ -4,6 +4,7 @@ import { inject } from '@angular/core/testing';
 import { Observable } from 'rxjs';
 import { EnvironmentConfig, ENV_CONFIG } from '../interface/env-config';
 import { News } from '../model/news.model';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,8 @@ export class NewsService {
 
   constructor(
     private http: HttpClient,
-    @Inject(ENV_CONFIG) config: EnvironmentConfig
+    @Inject(ENV_CONFIG) config: EnvironmentConfig,
+    private authService: AuthService
   ) {
     this.apiUrl = `${config.environment.baseUrl}`;
   }
@@ -31,16 +33,16 @@ export class NewsService {
 
     return this.http.post<News>(this.apiUrl! + 'news/add', formData, {
       headers: {
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjM3NjI5NDg4NmY0ZWUyYzIxNWQ4ZTEiLCJyb2xlIjoibWFzdGVyIiwiaWF0IjoxNjQ3Nzk2OTkxLCJleHAiOjE4Mjc3OTY5OTF9.2yWadBf02Vn1Oc598tWZKjXDrrpgrkFqdwNCpBiD7FE"
-      }
+        Authorization: `Bearer ${this.authService.getToken}`,
+      },
     });
   }
 
   deleteNews(id: string): Observable<News> {
     return this.http.delete<News>(this.apiUrl! + `news/delete?id=${id}`, {
       headers: {
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjM3NjI5NDg4NmY0ZWUyYzIxNWQ4ZTEiLCJyb2xlIjoibWFzdGVyIiwiaWF0IjoxNjQ3Nzk2OTkxLCJleHAiOjE4Mjc3OTY5OTF9.2yWadBf02Vn1Oc598tWZKjXDrrpgrkFqdwNCpBiD7FE"
-      }
-    })
+        Authorization: `Bearer ${this.authService.getToken}`,
+      },
+    });
   }
 }

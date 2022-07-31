@@ -4,6 +4,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { EnvironmentConfig, ENV_CONFIG } from '../interface/env-config';
 import { Banner } from '../models/banner.model';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class BannerService {
 
   apiUrl: string = ""
 
-  constructor(private http: HttpClient, @Inject(ENV_CONFIG) config: EnvironmentConfig) {
+  constructor(private http: HttpClient, @Inject(ENV_CONFIG) config: EnvironmentConfig, private authService: AuthService) {
     this.apiUrl = `${config.environment.baseUrl}`;
   }
 
@@ -30,7 +31,7 @@ export class BannerService {
 
     return this.http.post<Banner>(this.apiUrl + "banner/add", formData, {
       headers: {
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjM3NjI5NDg4NmY0ZWUyYzIxNWQ4ZTEiLCJyb2xlIjoibWFzdGVyIiwiaWF0IjoxNjQ3Nzk2OTkxLCJleHAiOjE4Mjc3OTY5OTF9.2yWadBf02Vn1Oc598tWZKjXDrrpgrkFqdwNCpBiD7FE"
+        "Authorization": `Bearer ${this.authService.getToken}`
       }
     })
 
@@ -39,7 +40,7 @@ export class BannerService {
   deleteBanner(bannerId?: string): Observable<Banner> {
     return this.http.delete(this.apiUrl + `banner/delete?banner_id=${bannerId}`, {
       headers: {
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjM3NjI5NDg4NmY0ZWUyYzIxNWQ4ZTEiLCJyb2xlIjoibWFzdGVyIiwiaWF0IjoxNjQ3Nzk2OTkxLCJleHAiOjE4Mjc3OTY5OTF9.2yWadBf02Vn1Oc598tWZKjXDrrpgrkFqdwNCpBiD7FE"
+        "Authorization": `Bearer ${this.authService.getToken}`
       }
     })
   }

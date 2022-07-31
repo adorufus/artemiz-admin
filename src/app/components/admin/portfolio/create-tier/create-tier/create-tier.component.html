@@ -12,20 +12,20 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Tier Description</mat-label>
-            <input matInput [(ngModel)]="tierDescription" placeholder="This tier is this and that" />
+            <textarea matInput rows="10" [(ngModel)]="tierDescription" placeholder="This tier is this and that"></textarea>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Youtube URL</mat-label>
             <input matInput [(ngModel)]="youtubeUrl" placeholder="Tier 1" />
         </mat-form-field>
-        <mat-label>Your Portfolio Images (Max 6)</mat-label>
+        <mat-label>Your Portfolio Files (Max 6)</mat-label>
         <div>
             <img width="200px" style="margin-right: 10px;" *ngFor="let url of urls" [src]="url" />
         </div>
         <div style="margin-top: 10px;"></div>
         <div *ngIf="urls.length < 6">
             <input type="file" (change)="uploadFile($event)" name="uploadFile" placeholder="test" multiple="multiple"
-                accept="image/*" />
+                accept="image/*,video/*" />
         </div>
 
     </mat-dialog-content>

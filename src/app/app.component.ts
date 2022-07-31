@@ -16,6 +16,7 @@ export class AppComponent {
   constructor(public authGuard: AuthGuard, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    
   }
 
   sideBarToggler() {

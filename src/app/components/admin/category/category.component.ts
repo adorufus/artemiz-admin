@@ -37,7 +37,6 @@ export class CategoryComponent implements OnInit {
 
   openEditDialog(name: string, id?: string, currentTitle?: string) {
     const dialogRef = this.dialog.open(CreateCategoryDialogComponent, {
-      width: '30%',
       data: {
         dialogNameData: name,
         idData: id,

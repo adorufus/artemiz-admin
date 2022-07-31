@@ -1,42 +1,52 @@
 <div class="container-fluid page">
-    <div class="pt-32pt">
-        <div class="container page__container d-flex flex-column flex-md-row align-items-center text-sm-left">
-            <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0 page-separator">
-                <div class="mb-24pt mb-sm-0 mr-sm-24pt">
-                    <h2 class="mb-0 mytext">Banner List</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-auto">
-                    <button mat-button (click)="openEditDialog()" class="add-news-btn d-flex align-items-center">
-                        Add Banner
-                    </button>
-                </div>
-            </div>
+  <div class="pt-32pt">
+    <div
+      class="container page__container d-flex flex-column flex-md-row align-items-center text-sm-left"
+    >
+      <div
+        class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0 page-separator"
+      >
+        <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+          <h2 class="mb-0 mytext">Banner List</h2>
         </div>
+      </div>
+      <div class="row">
+        <div class="col-auto">
+          <button
+            mat-button
+            (click)="openEditDialog()"
+            class="add-news-btn d-flex align-items-center"
+          >
+            Add Banner
+          </button>
+        </div>
+      </div>
     </div>
-    <div class="pt-32pt"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <table class="table table-bordered table-hover dataTable no-footer">
-                    <thead>
-                        <tr role="row">
-                            <th rowspan="1" colspan="1" style="width: 100px">Image</th>
-                            <th rowspan="1" colspan="1" style="width: 470px">Banner Name</th>
-                            <th rowspan="1" colspan="1" style="width: 470px">Navigation Url</th>
-                            <th style="width: 120px">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody *ngIf="banners?.data?.length! > 0">
-                        <tr *ngFor="let bannerData of banners?.data">
-                            <td>
-                                <img src={{bannerData.bannerFile}} width="100" />
-                            </td>
-                            <td>{{bannerData.bannerName}}</td>
-                            <td>{{bannerData.url}}</td>
-                            <td>
-                                <!-- <button mat-button
+  </div>
+  <div class="pt-32pt"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <table class="table table-bordered table-hover dataTable no-footer">
+          <thead>
+            <tr role="row">
+              <th rowspan="1" colspan="1" style="width: 100px">Image</th>
+              <th rowspan="1" colspan="1" style="width: 470px">Banner Name</th>
+              <th rowspan="1" colspan="1" style="width: 470px">
+                Navigation Url
+              </th>
+              <th style="width: 120px">Actions</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="banners?.data?.length! > 0">
+            <tr *ngFor="let bannerData of banners?.data">
+              <td>
+                <img src="{{ bannerData.bannerFile }}" width="100" />
+              </td>
+              <td>{{ bannerData.bannerName }}</td>
+              <td>{{ bannerData.url }}</td>
+              <td>
+                <!-- <button mat-button
                                     (click)="openEditDialog('Edit', newsData._id, newsData.title, newsData.article)"
                                     style="
                       border-radius: 5px;
@@ -46,18 +56,22 @@
                     ">
                                     <mat-icon>edit</mat-icon>
                                 </button> -->
-                                <button mat-button (click)="openDeleteDialog(bannerData._id!)" style="
-                      border-radius: 5px;
-                      background-color: rgb(216, 32, 32);
-                      color: white;
-                    ">
-                                    <mat-icon>delete</mat-icon>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                <button
+                  mat-button
+                  (click)="openDeleteDialog(bannerData._id!)"
+                  style="
+                    border-radius: 5px;
+                    background-color: rgb(216, 32, 32);
+                    color: white;
+                  "
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 </div>

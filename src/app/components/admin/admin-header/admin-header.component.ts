@@ -5,14 +5,16 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-admin-header',
   templateUrl: './admin-header.component.html',
-  styleUrls: ['./admin-header.component.scss']
+  styleUrls: ['./admin-header.component.scss'],
 })
 export class AdminHeaderComponent implements OnInit {
   @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
+  public username: string = '';
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
+    this.username = this.authService.getUsername();
   }
 
   toggleSidebar() {
@@ -20,8 +22,7 @@ export class AdminHeaderComponent implements OnInit {
   }
 
   logout() {
-    this.authService.removeToken()
-    this.router.navigate(['/home'])
+    this.authService.removeToken();
+    this.router.navigate(['/home']);
   }
-
 }

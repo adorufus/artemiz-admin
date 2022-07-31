@@ -23,6 +23,14 @@ export class AuthService {
     return this.storage.setItem('token', token)
   }
 
+  public setUsername(username: string) {
+    return this.storage.setItem('username', username)
+  }
+
+  public getUsername(): string {
+    return this.storage.getItem('username') ?? "";
+  }
+
   public removeToken(){
     return this.storage.removeItem('token')
   }

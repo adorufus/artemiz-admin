@@ -1,0 +1,95 @@
+<mat-spinner
+  *ngIf="spinnerService.visibility | async; else content"
+></mat-spinner>
+
+<ng-template #content>
+  <h4 *ngIf="isCompleted" style="color: rgb(36, 204, 92)">
+    Upload completed, please refresh this page to see the changes
+  </h4>
+  <div class="row" style="margin: 20px">
+    <div class="formTitle" style="font-size: 15pt; font-weight: bold">
+      App Name
+    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>App Name</mat-label>
+      <input matInput [(ngModel)]="app_name" placeholder="Your Web App Name" />
+    </mat-form-field>
+    <div class="formTitle" style="font-size: 15pt; font-weight: bold">
+      About Us
+    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>About Us</mat-label>
+      <textarea matInput rows="20" [(ngModel)]="about_us"></textarea>
+    </mat-form-field>
+    <div class="formTitle" style="font-size: 15pt; font-weight: bold">
+      Short About Us
+    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>Short About Us</mat-label>
+      <textarea matInput rows="10" [(ngModel)]="about_us_mini"></textarea>
+    </mat-form-field>
+    <div class="formTitle" style="font-size: 15pt; font-weight: bold">
+      Company Email
+    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>Company Email</mat-label>
+      <input
+        matInput
+        [(ngModel)]="company_email"
+        type="email"
+        placeholder="Your Company Email"
+      />
+    </mat-form-field>
+    <div class="formTitle" style="font-size: 15pt; font-weight: bold">
+      Company Phone
+    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>Company Phone</mat-label>
+      <input
+        matInput
+        [(ngModel)]="company_phone"
+        type="phone"
+        placeholder="Your Company Phone Number"
+      />
+    </mat-form-field>
+    <div style="font-size: 15pt; font-weight: bold">Main Banner</div>
+    <div>
+      <img
+        width="100%"
+        style="margin-right: 10px"
+        *ngIf="url !== '' && url !== null; else uploadInputText"
+        [src]="url"
+      />
+    </div>
+    <div style="height: 10px;"></div>
+    <ng-template #uploadInputText>
+      <mat-form-field>
+        <div>
+          <mat-toolbar>
+            <input matInput readonly [(ngModel)]="fileAttr" name="name" />
+          </mat-toolbar>
+        </div>
+      </mat-form-field>
+    </ng-template>
+    <div>
+      <button mat-flat-button (click)="getFileInput()" color="primary">
+        Pick Image
+      </button>
+    </div>
+    <div style="height: 15px;"></div>
+    <div hidden="true">
+      <input
+        type="file"
+        #fileInput
+        (change)="uploadFile($event)"
+        id="uploadFile"
+        name="uploadFile"
+        multiple="multiple"
+        accept="image/*"
+      />
+    </div>
+    <button mat-raised-button color="primary" (click)="updateGeneralData()">
+      Update
+    </button>
+  </div>
+</ng-template>

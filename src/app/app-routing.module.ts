@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './components/admin/auth/auth.component';
 import { BannerComponent } from './components/admin/banner/banner.component';
 import { CategoryComponent } from './components/admin/category/category.component';
+import { GeneralSettingsComponent } from './components/admin/general-settings/general-settings.component';
 import { NewsComponent } from './components/admin/news/news.component';
 import { PortfolioComponent } from './components/admin/portfolio/portfolio.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -26,6 +27,11 @@ const routes: Routes = [
   {
     path: 'news',
     component: NewsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'general',
+    component: GeneralSettingsComponent,
     canActivate: [AuthGuard]
   },
   {

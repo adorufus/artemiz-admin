@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ENV_CONFIG, EnvironmentConfig } from '../interface/env-config';
 import { News } from '../model/news.model';
 import { Category, Tier, TierData } from '../model/portfolio.model';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,8 @@ export class CategoryService {
 
   constructor(
     private http: HttpClient,
-    @Inject(ENV_CONFIG) config: EnvironmentConfig
+    @Inject(ENV_CONFIG) config: EnvironmentConfig,
+    private authService: AuthService
   ) {
     this.apiUrl = `${config.environment.baseUrl}`;
   }
@@ -24,7 +26,9 @@ export class CategoryService {
   }
 
   getCategory(categoryId: string): Observable<Category> {
-    return this.http.get<Category>(this.apiUrl! + `portfolio/category?id=${categoryId}`)
+    return this.http.get<Category>(
+      this.apiUrl! + `portfolio/category?id=${categoryId}`
+    );
   }
 
   addCategory(categoryName: string, imageUri: File): Observable<Category> {
@@ -38,8 +42,7 @@ export class CategoryService {
       formData,
       {
         headers: {
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjM3NjI5NDg4NmY0ZWUyYzIxNWQ4ZTEiLCJyb2xlIjoibWFzdGVyIiwiaWF0IjoxNjQ3Nzk2OTkxLCJleHAiOjE4Mjc3OTY5OTF9.2yWadBf02Vn1Oc598tWZKjXDrrpgrkFqdwNCpBiD7FE',
+          Authorization: `Bearer ${this.authService.getToken()}`,
         },
       }
     );
@@ -50,8 +53,7 @@ export class CategoryService {
       this.apiUrl! + `portfolio/category/delete?id=${bannerId}`,
       {
         headers: {
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjM3NjI5NDg4NmY0ZWUyYzIxNWQ4ZTEiLCJyb2xlIjoibWFzdGVyIiwiaWF0IjoxNjQ3Nzk2OTkxLCJleHAiOjE4Mjc3OTY5OTF9.2yWadBf02Vn1Oc598tWZKjXDrrpgrkFqdwNCpBiD7FE',
+          Authorization: `Bearer ${this.authService.getToken()}`,
         },
       }
     );
@@ -72,46 +74,55 @@ export class CategoryService {
       formData,
       {
         headers: {
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjM3NjI5NDg4NmY0ZWUyYzIxNWQ4ZTEiLCJyb2xlIjoibWFzdGVyIiwiaWF0IjoxNjQ3Nzk2OTkxLCJleHAiOjE4Mjc3OTY5OTF9.2yWadBf02Vn1Oc598tWZKjXDrrpgrkFqdwNCpBiD7FE',
+          Authorization: `Bearer ${this.authService.getToken()}`,
         },
       }
     );
   }
 
   getTierByCategory(categoryId: string): Observable<TierData> {
-    return this.http.get<TierData>(this.apiUrl! + `portfolio/tier/all-by-portfolio?portfolioId=${categoryId}`)
+    return this.http.get<TierData>(
+      this.apiUrl! + `portfolio/tier/all-by-portfolio?portfolioId=${categoryId}`
+    );
   }
 
-  createTier(tier_name: string, categoryId: string, tier_images: File[], tier_description: string, youtube_url: string): Observable<Tier> {
-
+  createTier(
+    tier_name: string,
+    categoryId: string,
+    tier_images: File[],
+    tier_description: string,
+    youtube_url: string
+  ): Observable<Tier> {
     console.log(tier_images);
 
     const formData: FormData = new FormData();
 
-    formData.append("tier_name", tier_name);
-    formData.append("categoryId", categoryId);
-    formData.append("youtube_url", youtube_url);
-    formData.append("tier_description", tier_description);
-    
-    for(let i = 0; i < tier_images.length; i++) {
+    formData.append('tier_name', tier_name);
+    formData.append('categoryId', categoryId);
+    formData.append('youtube_url', youtube_url);
+    formData.append('tier_description', tier_description);
+
+    for (let i = 0; i < tier_images.length; i++) {
       console.log(tier_images[i]);
-      formData.append(`images`, tier_images[i])
+      formData.append(`images`, tier_images[i]);
     }
 
-    return this.http.post<Tier>(this.apiUrl! + "portfolio/tier/create", formData, {
-      headers: {
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjM3NjI5NDg4NmY0ZWUyYzIxNWQ4ZTEiLCJyb2xlIjoibWFzdGVyIiwiaWF0IjoxNjQ3Nzk2OTkxLCJleHAiOjE4Mjc3OTY5OTF9.2yWadBf02Vn1Oc598tWZKjXDrrpgrkFqdwNCpBiD7FE"
+    return this.http.post<Tier>(
+      this.apiUrl! + 'portfolio/tier/create',
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${this.authService.getToken()}`,
+        },
       }
-    })
-
+    );
   }
 
   deleteTier(id: string): Observable<Tier> {
     return this.http.delete(this.apiUrl! + `portfolio/tier/delete?id=${id}`, {
       headers: {
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjM3NjI5NDg4NmY0ZWUyYzIxNWQ4ZTEiLCJyb2xlIjoibWFzdGVyIiwiaWF0IjoxNjQ3Nzk2OTkxLCJleHAiOjE4Mjc3OTY5OTF9.2yWadBf02Vn1Oc598tWZKjXDrrpgrkFqdwNCpBiD7FE"
-      }
-    })
+        Authorization: `Bearer ${this.authService.getToken()}`,
+      },
+    });
   }
 }

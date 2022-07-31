@@ -39,6 +39,7 @@ import { CreateBannerDialogComponent } from './components/admin/banner/create-ba
 import { DeleteBannerDialogComponent } from './components/admin/banner/delete-banner-dialog/delete-banner-dialog.component';
 import { AuthComponent } from './components/admin/auth/auth.component';
 import { AuthGuard } from './guards/auth.guard';
+import { GeneralSettingsComponent } from './components/admin/general-settings/general-settings.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { AuthGuard } from './guards/auth.guard';
     CreateBannerDialogComponent,
     DeleteBannerDialogComponent,
     AuthComponent,
+    GeneralSettingsComponent,
   ],
   imports: [
     BrowserModule,
