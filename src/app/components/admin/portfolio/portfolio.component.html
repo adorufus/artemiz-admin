@@ -1,61 +1,76 @@
 <h1 mat-dialog-title>Tier List</h1>
-<mat-spinner *ngIf="spinnerService.visibility | async; else content"></mat-spinner>
+<mat-spinner
+  *ngIf="spinnerService.visibility | async; else content"
+></mat-spinner>
 <ng-template #content>
-    <h4 *ngIf="isCompleted;" style="color: rgb(36, 204, 92);">
-        Upload completed, please refresh this page to see the changes
-    </h4>
-    <mat-dialog-content>
-        <div style="margin-top: 10px;"></div>
-        <div class="row">
-            <div class="col-auto">
-                <button mat-button (click)="openAddTier()" class="add-news-btn d-flex align-items-center">
-                    Add Tier
-                </button>
-            </div>
-        </div>
-        <!-- <div class="pt-32pt"></div> -->
-        <div class="container" style="width: 100%;">
-            <div class="row">
-                <div class="col-sm-12">
-                    <table class="table table-hover dataTable no-footer">
-                        <thead>
-                            <tr role="row">
-                                <th rowspan="1" colspan="1" style="width: 150px">Tier Images List</th>
-                                <th rowspan="1" colspan="1" style="width: 100px">Tier Name</th>
-                                <th rowspan="1" colspan="1" style="width: 300px">Tier Discription</th>
-                                <th style="width: 200px">Youtube URL</th>
-                                <th style="width: 100px">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody *ngIf="tier?.data?.length! > 0">
-                            <tr *ngFor="let tierData of tier?.data">
-                                <td>
-                                    <img *ngFor="let tierImage of tierData.tier_portofolio_images" src={{tierImage}}
-                                        width="100px" style="margin-bottom: 10px;" />
-                                </td>
-                                <td>{{tierData.tier_name}}</td>
-                                <td>{{tierData.tier_description}}</td>
-                                <td>{{tierData.youtube_url}}</td>
-                                <td>
-
-                                    <button mat-button (click)="openDeleteTier(tierData._id!)" style="
+  <h4 *ngIf="isCompleted" style="color: rgb(36, 204, 92)">
+    Upload completed, please refresh this page to see the changes
+  </h4>
+  <mat-dialog-content>
+    <div style="margin-top: 10px"></div>
+    <div class="row">
+      <div class="col-auto">
+        <button
+          mat-button
+          (click)="openAddTier()"
+          class="add-news-btn d-flex align-items-center"
+        >
+          Add Tier
+        </button>
+      </div>
+    </div>
+    <!-- <div class="pt-32pt"></div> -->
+    <div class="container" style="width: 100%">
+      <div class="row">
+        <div class="col-sm-12">
+          <table class="table table-hover dataTable no-footer">
+            <thead>
+              <tr role="row">
+                <th rowspan="1" colspan="1" style="width: 150px">
+                  Tier Images List
+                </th>
+                <th rowspan="1" colspan="1" style="width: 100px">Tier Name</th>
+                <th rowspan="1" colspan="1" style="width: 300px">
+                  Tier Discription
+                </th>
+                <th style="width: 200px">Youtube URL</th>
+                <th style="width: 100px">Actions</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="tier?.data?.length! > 0">
+              <tr *ngFor="let tierData of tier?.data">
+                <td>
+                  <img
+                    *ngFor="let tierImage of tierData.tier_portofolio_images"
+                    src="{{ tierImage }}"
+                    width="100px"
+                    style="margin-bottom: 10px"
+                  />
+                </td>
+                <td>{{ tierData.tier_name }}</td>
+                <td>{{ tierData.tier_description }}</td>
+                <td>{{ tierData.youtube_url }}</td>
+                <td>
+                  <button
+                    mat-button
+                    (click)="openDeleteTier(tierData._id!)"
+                    style="
                       border-radius: 5px;
                       background-color: rgb(216, 32, 32);
                       color: white;
-                    ">
-                                        <mat-icon>delete</mat-icon>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                    "
+                  >
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-
-    </mat-dialog-content>
-    <div mat-dialog-actions [align]="'end'">
-        <button mat-raised-button color="warn" mat-dialog-close>Close</button>
-
+      </div>
     </div>
+  </mat-dialog-content>
+  <div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  </div>
 </ng-template>
