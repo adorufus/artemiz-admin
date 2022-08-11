@@ -34,7 +34,7 @@ export class CreateTierComponent implements OnInit {
       for (let i = 0; i < imgFile.target.files.length; i++) {
         this.fileToUpload.push(imgFile.target.files[i])
 
-        console.log('file image' + this.fileToUpload.toString())
+        console.log('files' + this.fileToUpload.toString())
 
         var reader = new FileReader()
         reader.readAsDataURL(imgFile.target.files[i])

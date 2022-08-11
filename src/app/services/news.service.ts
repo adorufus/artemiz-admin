@@ -33,7 +33,7 @@ export class NewsService {
 
     return this.http.post<News>(this.apiUrl! + 'news/add', formData, {
       headers: {
-        Authorization: `Bearer ${this.authService.getToken}`,
+        Authorization: `Bearer ${this.authService.getToken()}`,
       },
     });
   }
@@ -41,7 +41,7 @@ export class NewsService {
   deleteNews(id: string): Observable<News> {
     return this.http.delete<News>(this.apiUrl! + `news/delete?id=${id}`, {
       headers: {
-        Authorization: `Bearer ${this.authService.getToken}`,
+        Authorization: `Bearer ${this.authService.getToken()}`,
       },
     });
   }

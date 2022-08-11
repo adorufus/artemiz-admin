@@ -31,7 +31,7 @@ export class BannerService {
 
     return this.http.post<Banner>(this.apiUrl + "banner/add", formData, {
       headers: {
-        "Authorization": `Bearer ${this.authService.getToken}`
+        "Authorization": `Bearer ${this.authService.getToken()}`
       }
     })
 
@@ -40,7 +40,7 @@ export class BannerService {
   deleteBanner(bannerId?: string): Observable<Banner> {
     return this.http.delete(this.apiUrl + `banner/delete?banner_id=${bannerId}`, {
       headers: {
-        "Authorization": `Bearer ${this.authService.getToken}`
+        "Authorization": `Bearer ${this.authService.getToken()}`
       }
     })
   }
