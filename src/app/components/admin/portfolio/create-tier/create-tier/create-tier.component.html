@@ -19,8 +19,11 @@
             <input matInput [(ngModel)]="youtubeUrl" placeholder="Tier 1" />
         </mat-form-field>
         <mat-label>Your Portfolio Files (Max 6)</mat-label>
-        <div>
-            <img width="200px" style="margin-right: 10px;" *ngFor="let url of urls" [src]="url" />
+        <div *ngFor="let url of urls">
+            <img *ngIf="url.type.includes('image'); else video" width="200px" style="margin-right: 10px;" [src]="url.url" />
+            <ng-template #video>
+                <video width="200px" style="margin-right: 10px;" [src]="url.url"></video>
+            </ng-template>
         </div>
         <div style="margin-top: 10px;"></div>
         <div *ngIf="urls.length < 6">

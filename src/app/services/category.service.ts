@@ -90,6 +90,7 @@ export class CategoryService {
     tier_name: string,
     categoryId: string,
     tier_images: File[],
+    type: string[],
     tier_description: string,
     youtube_url: string
   ): Observable<Tier> {
@@ -104,7 +105,8 @@ export class CategoryService {
 
     for (let i = 0; i < tier_images.length; i++) {
       console.log(tier_images[i]);
-      formData.append(`images`, tier_images[i]);
+      formData.append(`files`, tier_images[i]);
+      formData.append('fileType', type[i])
     }
 
     return this.http.post<Tier>(

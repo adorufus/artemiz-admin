@@ -9,12 +9,13 @@ import { SpinnerService } from 'src/app/services/spinner.service'
   styleUrls: ['./create-tier.component.scss'],
 })
 export class CreateTierComponent implements OnInit {
-  urls: string[] = []
+  urls: {url: string, type: any}[] = []
   isCompleted: boolean = false
   tierName: string = ''
   tierDescription: string = ''
   youtubeUrl: string = ''
   fileToUpload: File[] = []
+  types: string[] = []
 
   constructor(
     public spinnerService: SpinnerService,
@@ -33,6 +34,9 @@ export class CreateTierComponent implements OnInit {
       console.log(this.fileToUpload)
       for (let i = 0; i < imgFile.target.files.length; i++) {
         this.fileToUpload.push(imgFile.target.files[i])
+        var type = imgFile.target.files[i].type.split('/')
+
+        this.types.push(type[0])
 
         console.log('files' + this.fileToUpload.toString())
 
@@ -40,10 +44,14 @@ export class CreateTierComponent implements OnInit {
         reader.readAsDataURL(imgFile.target.files[i])
 
         reader.onload = (events: any) => {
-          this.urls?.push(events.target.result as string)
+          this.urls?.push({
+            url: events.target.result as string,
+            type: imgFile.target.files[i].type
+          })
         }
 
         console.log(this.urls)
+        console.log(this.types)
       }
     }
   }
@@ -55,6 +63,7 @@ export class CreateTierComponent implements OnInit {
         this.tierName,
         this.data.categoryId,
         this.fileToUpload,
+        this.types,
         this.tierDescription,
         this.youtubeUrl,
       )
