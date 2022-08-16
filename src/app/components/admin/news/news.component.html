@@ -1,22 +1,14 @@
 <div class="container-fluid page">
   <div class="pt-32pt">
-    <div
-      class="container page__container d-flex flex-column flex-md-row align-items-center text-sm-left"
-    >
-      <div
-        class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0 page-separator"
-      >
+    <div class="container page__container d-flex flex-column flex-md-row align-items-center text-sm-left">
+      <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0 page-separator">
         <div class="mb-24pt mb-sm-0 mr-sm-24pt">
           <h2 class="mb-0 mytext">News List</h2>
         </div>
       </div>
       <div class="row">
         <div class="col-auto">
-          <button
-            mat-button
-            (click)="openEditDialog('Add')"
-            class="add-news-btn d-flex align-items-center"
-          >
+          <button mat-button (click)="openEditDialog('Add')" class="add-news-btn d-flex align-items-center">
             Add News
           </button>
         </div>
@@ -24,6 +16,7 @@
     </div>
   </div>
   <div class="pt-32pt"></div>
+  <div style="color: red;">Please upload an image that have same ratio (16:9)</div>
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
@@ -42,35 +35,27 @@
               </td>
               <td>{{ newsData.title }}</td>
               <td>
-                <button
-                  mat-button
-                  (click)="
+                <button mat-button (click)="
                     openEditDialog(
                       'Edit',
                       newsData._id,
                       newsData.title,
                       newsData.article
                     )
-                  "
-                  style="
+                  " style="
                     border-radius: 5px;
                     background-color: rgb(32, 216, 115);
                     color: white;
                     margin: 5px;
-                  "
-                >
+                  ">
                   <mat-icon>edit</mat-icon>
                 </button>
-                <button
-                  mat-button
-                  (click)="openDeleteDialog(newsData._id!)"
-                  style="
+                <button mat-button (click)="openDeleteDialog(newsData._id!)" style="
                     border-radius: 5px;
                     background-color: rgb(216, 32, 32);
                     color: white;
                     margin: 5px;
-                  "
-                >
+                  ">
                   <mat-icon>delete</mat-icon>
                 </button>
               </td>

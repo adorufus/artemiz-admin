@@ -1,7 +1,5 @@
 <h1 mat-dialog-title>{{ dialogName }} News</h1>
-<mat-spinner
-  *ngIf="spinnerService.visibility | async; else content"
-></mat-spinner>
+<mat-spinner *ngIf="spinnerService.visibility | async; else content"></mat-spinner>
 <ng-template #content>
   <h4 *ngIf="isCompleted" style="color: rgb(36, 204, 92)">
     Upload completed, please refresh this page to see the changes
@@ -21,26 +19,14 @@
           <input matInput [(ngModel)]="fileAttr" readonly name="name" />
           <button mat-flat-button color="primary">Pick Image</button>
         </mat-toolbar>
-        <input
-          type="file"
-          #fileInput
-          id="uploadFile"
-          (change)="uploadFile($event)"
-          name="uploadFile"
-          multiple="multiple"
-          accept="image/*"
-        />
+        <input type="file" #fileInput id="uploadFile" (change)="uploadFile($event)" name="uploadFile"
+          multiple="multiple" accept="image/*" />
       </div>
     </mat-form-field>
   </mat-dialog-content>
   <div mat-dialog-actions [align]="'end'">
     <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="proccess()"
-      cdkFocusInitial
-    >
+    <button mat-raised-button color="primary" (click)="proccess()" cdkFocusInitial>
       {{primaryButtonText}}
     </button>
   </div>
