@@ -72,7 +72,7 @@
       </mat-form-field>
     </ng-template>
     <div>
-      <button mat-flat-button (click)="getFileInput()" color="primary">
+      <button mat-flat-button #fileInput (click)="uploadFile($event)" color="primary">
         Pick Image
       </button>
     </div>

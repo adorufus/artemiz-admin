@@ -13,16 +13,26 @@
       <mat-label>News Content</mat-label>
       <textarea matInput rows="20" [(ngModel)]="article"></textarea>
     </mat-form-field>
-    <mat-form-field>
+    <div *ngIf="imageUrl !== ''; else uploadImage">
+      <img [src]="imageUrl" width="20%">
+      <div style="height: 12px;"></div>
       <div>
-        <mat-toolbar>
-          <input matInput [(ngModel)]="fileAttr" readonly name="name" />
-          <button mat-flat-button color="primary">Pick Image</button>
-        </mat-toolbar>
-        <input type="file" #fileInput id="uploadFile" (change)="uploadFile($event)" name="uploadFile"
-          multiple="multiple" accept="image/*" />
+        <button (click)="uploadFile($event)" mat-flat-button color="primary">Pick Image</button>
       </div>
-    </mat-form-field>
+    </div>
+    <ng-template #uploadImage>
+      <mat-form-field>
+        <div>
+          <div style="color: grey;">Notes: upload an image that have 16:9 aspect ratio</div>
+          <mat-toolbar>
+            <input matInput [(ngModel)]="fileAttr" readonly name="name" />
+            <button mat-flat-button color="primary">Pick Image</button>
+          </mat-toolbar>
+          <input type="file" #fileInput id="uploadFile" (change)="uploadFile($event)" name="uploadFile"
+            multiple="multiple" accept="image/*" />
+        </div>
+      </mat-form-field>
+    </ng-template>
   </mat-dialog-content>
   <div mat-dialog-actions [align]="'end'">
     <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>

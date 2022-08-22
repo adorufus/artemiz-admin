@@ -20,13 +20,14 @@ export class NewsComponent implements OnInit {
     this.fetchNews();
   }
 
-  openEditDialog(name: string, id?: string, currentTitle?: string, currentArticle?: string) {
+  openEditDialog(name: string, id?: string, currentTitle?: string, currentArticle?: string, currentImage?: string) {
     const dialogRef = this.dialog.open(CreateEditDialogComponent, {
       data: {
         dialogNameData: name,
         idData: id,
         currentTitle: currentTitle,
-        currentArticle: currentArticle
+        currentArticle: currentArticle,
+        currentImage: currentImage
       },
     });
   }

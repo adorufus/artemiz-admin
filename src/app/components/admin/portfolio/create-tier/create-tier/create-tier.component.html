@@ -18,7 +18,7 @@
             <mat-label>Youtube URL</mat-label>
             <input matInput [(ngModel)]="youtubeUrl" placeholder="Tier 1" />
         </mat-form-field>
-        <mat-label>Your Portfolio Files (Max 6)</mat-label>
+        <mat-label>Notes: Select 2 or more media (max 6)</mat-label>
         <div *ngFor="let url of urls">
             <img *ngIf="url.type.includes('image'); else video" width="200px" style="margin-right: 10px;" [src]="url.url" />
             <ng-template #video>
