@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Tier List</h1>
+<h1 mat-dialog-title>Edit Tier</h1>
 <mat-spinner *ngIf="spinnerService.visibility | async; else content"></mat-spinner>
 <ng-template #content>
     <h4 *ngIf="isCompleted;" style="color: rgb(36, 204, 92);">
@@ -34,6 +34,6 @@
     </mat-dialog-content>
     <div mat-dialog-actions [align]="'end'">
         <button mat-raised-button color="warn" mat-dialog-close>Close</button>
-        <button mat-raised-button color="primary" (click)="createTier()">Create</button>
+        <button mat-raised-button color="primary" (click)="updateTier()">Update</button>
     </div>
 </ng-template>

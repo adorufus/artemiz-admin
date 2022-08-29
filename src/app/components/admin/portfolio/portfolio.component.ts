@@ -6,6 +6,7 @@ import { CategoryService } from 'src/app/services/category.service'
 import { SpinnerService } from 'src/app/services/spinner.service'
 import { CreateTierComponent } from './create-tier/create-tier/create-tier.component'
 import { DeleteTierComponent } from './delete-tier/delete-tier/delete-tier.component'
+import { EditTierComponent } from './edit-tier/edit-tier.component'
 
 @Component({
   selector: 'app-portfolio',
@@ -37,6 +38,17 @@ export class PortfolioComponent implements OnInit {
       data: {
         categoryId: this.data.categoryId,
       },
+    })
+  }
+
+  openEditTier(id?: string, tier_name?: string, tier_description?: string, youtube_url?: string) {
+    this.dialog.open(EditTierComponent, {
+      data: {
+        tierId: id,
+        tierName: tier_name,
+        tierDescription: tier_description,
+        youtubeUrl: youtube_url
+      }
     })
   }
 

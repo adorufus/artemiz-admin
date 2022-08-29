@@ -40,6 +40,7 @@ import { DeleteBannerDialogComponent } from './components/admin/banner/delete-ba
 import { AuthComponent } from './components/admin/auth/auth.component';
 import { AuthGuard } from './guards/auth.guard';
 import { GeneralSettingsComponent } from './components/admin/general-settings/general-settings.component';
+import { EditTierComponent } from './components/admin/portfolio/edit-tier/edit-tier.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { GeneralSettingsComponent } from './components/admin/general-settings/ge
     DeleteBannerDialogComponent,
     AuthComponent,
     GeneralSettingsComponent,
+    EditTierComponent,
   ],
   imports: [
     BrowserModule,

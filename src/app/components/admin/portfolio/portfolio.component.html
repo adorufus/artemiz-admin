@@ -44,6 +44,21 @@
                 <td>{{ tierData.tier_description }}</td>
                 <td>{{ tierData.youtube_url }}</td>
                 <td>
+                  <!-- <button mat-button (click)="
+                    openEditTier(
+                      tierData._id,
+                      tierData.tier_name,
+                      tierData.tier_description,
+                      tierData.youtube_url
+                    )
+                  " style="
+                    border-radius: 5px;
+                    background-color: rgb(32, 216, 115);
+                    color: white;
+                    margin: 5px;
+                  ">
+                    <mat-icon>edit</mat-icon>
+                  </button> -->
                   <button mat-button (click)="openDeleteTier(tierData._id!)" style="
                       border-radius: 5px;
                       background-color: rgb(216, 32, 32);
