@@ -51,7 +51,7 @@ export class CreateBannerDialogComponent implements OnInit {
 
   createBanner() {
     if (this.fileToUpload) {
-      this.bannerService.createBanner(this.bannerName, this.navUrl, this.fileToUpload).subscribe({
+      this.bannerService.createBanner(this.bannerName, this.fileToUpload).subscribe({
         next: (data) => {
           console.log(data);
           this.isCompleted = true;

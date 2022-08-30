@@ -21,12 +21,12 @@ export class BannerService {
     return this.http.get<Banner>(this.apiUrl + "banner/all");
   }
 
-  createBanner(file_name: string, go_to_url: string, image_file: File): Observable<Banner> {
+  createBanner(file_name: string, image_file: File): Observable<Banner> {
 
     const formData: FormData = new FormData()
 
     formData.append("file_name", file_name)
-    formData.append("go_to_url", go_to_url)
+    formData.append("go_to_url", "")
     formData.append("image_file", image_file)
 
     return this.http.post<Banner>(this.apiUrl + "banner/add", formData, {
